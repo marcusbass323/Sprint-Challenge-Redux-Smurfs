@@ -7,14 +7,42 @@ import './App.css';
  `How do I ensure that my component links the state to props?`
  */
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      height: '',
+      age: '',
+    }
+  }
+
+  addSmurf() {
+    if (this.state.name === '') { return }
+    
+    let SmurfArr = this.state.name;
+    SmurfArr.push(this.state.name);
+    this.setState({ name: '' });
+    this.textInput.focus();
+  }
+
+
+
   render() {
     return (
       <div className="App">
         <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your Redux version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div>
-        <div>Have fun!</div>
-      </div>
+        <input type="text"
+          placeholder="Enter Smurf Name..."
+        />
+        <input type="text"
+          placeholder=" Enter Smurf Height..."
+        />
+        <input type="text"
+          placeholder=" Enter Smurf Age..."
+        />
+        <button onClick={this.addSmurf.bind(this)}>Add Smurf</button>
+        </div>
     );
   }
 }
