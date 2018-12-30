@@ -6,14 +6,15 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from './reducers/index';
-import { BrowserRouter as Router } from 'react-router-dom';
+import rootReducer from  './reducers';
+
+const store = createStore(rootReducer, // this is the most basic reducer. A function that returns and object. Replace it.
+  applyMiddleware(thunk)
+);
 
 ReactDOM.render(
-  <Provider store={createStore(reducer, applyMiddleware(logger, thunk))}>
-    <Router>
-      <App />
-    </Router>
+  <Provider store={store}>
+    <App />
   </Provider>,
   document.getElementById('root')
 );
