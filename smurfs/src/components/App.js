@@ -4,7 +4,7 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, Container, 
 import { connect } from 'react-redux';
 
 import { getSmurfs } from '../actions/index';
-import Smurfs from '../components/Smurfs';
+import Smurfs from './Smurf';
 import SmurfForm from '../components/SmurfForm';
 import SmurfProfile from '../components/SmurfProfile';
 
