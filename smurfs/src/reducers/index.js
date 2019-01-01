@@ -1,12 +1,7 @@
-const initialState = {
-  smurfs: [],
-  loading: false,
-  error: null,
-}
+import { combineReducers } from 'redux'
+import { Smurfville } from './Smurfville'
 
-export default (state = initialState, action) => {
-  switch(action.type) {
-    default:
-    return state
-  }
-}
+
+export default combineReducers({
+  Smurfville
+})

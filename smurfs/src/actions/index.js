@@ -6,8 +6,11 @@ export const ADD_SMURF = "ADD_SMURF";
 export const DELETE_SMURF = "DELETE_SMURF";
 export const UPDATE_SMURF = "UPDATE_SMURF";
 
+
+//DATA SOURCE
 const URL = "http://localhost:3333";
 
+// GRABBING SMURF DATA FROM API
 export const getSmurfs = () => dispatch => {
 dispatch({ type: LOADING });
 axios
@@ -21,6 +24,7 @@ axios
   });
 };
 
+//ADDING A NEW SMURF TO DATABASE AND RETURNING DATA
 export const addSmurf = newSmurf => dispatch => {
 dispatch({ type: LOADING });
 axios
@@ -34,6 +38,21 @@ axios
   });
 };
 
+//UPDATING SMURF
+export const updateSmurf = updatedSmurf => dispatch => {
+  dispatch({ type: LOADING });
+  axios
+    .put(`${URL}/smurfs/${updatedSmurf.id}`, updatedSmurf)
+    .then(response => {
+      console.log(response.data);
+      dispatch({ type: UPDATE_SMURF, payload: response.data })
+    })
+    .catch(err => {
+      dispatch({ type: ERROR, payload: err.errorMessage });
+    });
+  };
+
+//DELETE SMURF
 export const deleteSmurf = id => dispatch => {
 dispatch({ type: LOADING });
 axios
@@ -47,15 +66,4 @@ axios
   });
 };
 
-export const updateSmurf = updatedSmurf => dispatch => {
-dispatch({ type: LOADING });
-axios
-  .put(`${URL}/smurfs/${updatedSmurf.id}`, updatedSmurf)
-  .then(response => {
-    console.log(response.data);
-    dispatch({ type: UPDATE_SMURF, payload: response.data })
-  })
-  .catch(err => {
-    dispatch({ type: ERROR, payload: err.errorMessage });
-  });
-};
+
